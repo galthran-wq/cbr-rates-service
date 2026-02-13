@@ -3,7 +3,6 @@ from unittest.mock import AsyncMock
 import httpx
 import pytest
 from httpx import AsyncClient
-
 from src.dependencies import get_http_client
 from src.main import app
 from src.services import cbr
