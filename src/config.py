@@ -10,6 +10,8 @@ class Settings(BaseSettings):
     port: int = 8000
     log_level: str = "info"
     cors_origins: list[str] = ["*"]
+    cbr_url: str = "https://www.cbr-xml-daily.ru/daily_json.js"
+    cbr_cache_ttl: int = 3600
 
 
 settings = Settings()
