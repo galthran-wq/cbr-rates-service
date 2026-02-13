@@ -2,6 +2,7 @@ import logging
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
+import httpx
 import structlog
 from fastapi import FastAPI
 
@@ -31,7 +32,9 @@ def configure_logging() -> None:
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     configure_logging()
-    yield
+    async with httpx.AsyncClient() as client:
+        app.state.http_client = client
+        yield
 
 
 def create_app() -> FastAPI:
